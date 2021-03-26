@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  listName = '';
+  
+  closeResult: string;
+
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
-
+  enterList(){
+    console.log(this.listName)
+  }
+  
 }

@@ -1,9 +1,22 @@
-<div class="container todo">
-    <h3>To Do</h3>
-    <div class="list">
-      <div class="card" style="width:288px;">
-        
-      </div>
+<div class="todo-container">
+   <div class="header">
+    <h4>To Do List</h4>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add List <i class="fa fa-plus"></i></button>
+       
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-body">
+         <label class="input-label">Enter List</label>
+         <input type="text" class="form-control" placeholder="enter list.." [(ngModel)]="listName">
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
+         <button type="button" class="btn btn-primary" (click)="enterList()" data-bs-dismiss="modal">Add List</button>
+       </div>
+     </div>
+   </div>
+ </div>
    </div>
 </div>
   
