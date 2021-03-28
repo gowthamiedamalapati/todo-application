@@ -10,3 +10,7 @@
 .modal-dialog{
     max-width: 300px;
 }
+.lists{
+    display: flex;
+    flex-direction: row;
+}

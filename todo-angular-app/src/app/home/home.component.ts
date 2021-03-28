@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
 
 @Component({
   selector: 'app-home',
@@ -10,10 +8,37 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
 
   listName = '';
+
+  lists=[
+    {
+      list:'list1',
+      tasks:['task1','task2','task3','task4'],
+    },
+    {
+      list:'list2',
+      tasks:['task1','task2','task3','task4'],
+    },
+    {
+      list:'list3',
+      tasks:['task1','task2','task3','task4'],
+    },
+    {
+      list:'list4',
+      tasks:['task1','task2','task3','task4'],
+    },
+    {
+      list:'list5',
+      tasks:[],
+    },
+    {
+      list:'list6',
+      tasks:['task1','task2'],
+    },
+  ];  
   
   closeResult: string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

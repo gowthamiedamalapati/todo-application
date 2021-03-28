@@ -1,0 +1,9 @@
+.card{
+    box-shadow: 3px  grey;
+}
+.task-list-container{
+    width: 150px;
+}
+.card-body{
+    box-shadow: 3px  grey;
+}
