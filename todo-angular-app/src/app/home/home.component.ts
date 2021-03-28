@@ -1,49 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Params } from '@angular/router';
+import { TodoService } from 'src/app/services/todo.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  lists:any[];
 
-  listName = '';
-
-  lists=[
-    {
-      list:'list1',
-      tasks:['task1','task2','task3','task4'],
-    },
-    {
-      list:'list2',
-      tasks:['task1','task2','task3','task4'],
-    },
-    {
-      list:'list3',
-      tasks:['task1','task2','task3','task4'],
-    },
-    {
-      list:'list4',
-      tasks:['task1','task2','task3','task4'],
-    },
-    {
-      list:'list5',
-      tasks:[],
-    },
-    {
-      list:'list6',
-      tasks:['task1','task2'],
-    },
-  ];  
-  
-  closeResult: string;
-
-  constructor() { }
+  constructor(private todoService:TodoService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params:Params)=>{
+      console.log(params);
+    })
+     this.getLists();
   }
-  enterList(){
-    console.log(this.listName)
+
+  createNewList(title:string){
+  this.todoService.createList(title).subscribe((response:any)=>{
+   console.log(response);
+  });
   }
+  
+  getLists(){
+    this.todoService.getLists().subscribe((lists:any[])=>{
+      this.lists = lists
+      console.log(this.lists);
+      this.todoService.getTask(this.lists[0]._id).subscribe((tasks:any[])=>{
+        console.log(tasks);
+       })
+    })
+  }
+ 
   
 }
