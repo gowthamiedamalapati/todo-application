@@ -13,10 +13,16 @@ export class TodoService {
   getLists(){
     return this.webrequest.get('/lists');
   }
+  deleteList(listId){
+   return this.webrequest.delete('/lists/'+listId);
+  }
   getTask(listId){
     return this.webrequest.get('/lists/'+listId+'/tasks');
   }
   createTask(title:string,listId:string){
     return this.webrequest.post('/lists/'+listId+'/tasks',{title,listId})
+  }
+  deleteTask(listId,taskId){
+    return this.webrequest.delete('/lists/'+listId+'/tasks/'+taskId);
   }
 }

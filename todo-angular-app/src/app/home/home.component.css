@@ -106,3 +106,14 @@ p{
     position: fixed;
     z-index: 9999;
 }
+.task{
+    display: flex;
+    justify-content: space-between;
+}
+.task button{
+ border:none;
+background-color: white;
+}
+.task i{
+    font-weight:lighter;
+}

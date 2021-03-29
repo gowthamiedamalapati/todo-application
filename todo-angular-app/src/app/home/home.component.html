@@ -1,19 +1,15 @@
 <div class="content">
 
 
-   <div class="task-manager-container" *ngFor="let list of lists; index as i" [routerLink]="['/lists',list._id]"> 
+   <div class="task-manager-container" *ngFor="let list of lists; let i=index;" [routerLink]="['/lists',list._id]"> 
     <div class="topbar">
       {{list.title}}
     </div>
-    <div class="task-list-container">
-      <div class="task">
-       <p>Task1</p>
-      </div>
-      <div class="task">
-       <p>Task2</p>
-      </div>
-      <div class="task">
-       <p>Task3</p>
+    <div class="task-list-container" >
+      <div  class="task" *ngFor="let task of tasks" [routerLink]="['/lists',list._id,'tasks',task._id]">
+     <div *ngIf="tasks.length>0">
+     <div *ngIf="list._id === task._listId">{{task.title}}</div></div>
+     <button (click)="deleteTask()"><i class="fa fa-times fa-xs" aria-hidden="true"></i></button>
       </div>
     </div>
     <div class="task-manager-footer">
@@ -21,20 +17,7 @@
         <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
         <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
-      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-body">
-             <label class="input-label">Enter List</label>
-             <input type="text" class="form-control" placeholder="enter list.." #taskName>
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-             <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Add Task</button>
-           </div>
-         </div>
-       </div>
-     </div>
+
       <div class="add-task">
         <button class="add-task" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
   
@@ -76,4 +59,17 @@
       </div>
     </div>
   </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-body">
+       <label class="input-label">Enter List</label>
+       <input type="text" class="form-control" placeholder="enter list.." >
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteList()">delete</button>
+     </div>
+   </div>
+ </div>
 </div>

@@ -5,7 +5,9 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path:'',redirectTo:'/lists',pathMatch:'full'},
   { path:'lists',component:HomeComponent},
-  { path:'lists/:listId', component:HomeComponent}
+  { path:'lists/:listId', component:HomeComponent},
+  { path:'lists/:listId/tasks', component:HomeComponent},
+  { path:'lists/:listId/tasks/:taskId', component:HomeComponent}
 ];
 
 @NgModule({
