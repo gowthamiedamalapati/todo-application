@@ -16,4 +16,7 @@ export class TodoService {
   getTask(listId){
     return this.webrequest.get('/lists/'+listId+'/tasks');
   }
+  createTask(title:string,listId:string){
+    return this.webrequest.post('/lists/'+listId+'/tasks',{title,listId})
+  }
 }

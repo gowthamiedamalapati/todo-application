@@ -1,27 +1,47 @@
 <div class="content">
-   <div class="task-manager-container" *ngFor="let list of lists; index as i">
+
+
+   <div class="task-manager-container" *ngFor="let list of lists; index as i" [routerLink]="['/lists',list._id]"> 
     <div class="topbar">
-     {{list.title}}
+      {{list.title}}
     </div>
     <div class="task-list-container">
-     <div class="task">
+      <div class="task">
        <p>Task1</p>
-     </div>
-     <div class="task">
-      <p>Task2</p>
-    </div>
-    <div class="task">
-      <p>Task3</p>
-    </div>
+      </div>
+      <div class="task">
+       <p>Task2</p>
+      </div>
+      <div class="task">
+       <p>Task3</p>
+      </div>
     </div>
     <div class="task-manager-footer">
       <div class="list-edits">
-      <button><i class="fa fa-trash" aria-hidden="true"></i></button>
-      <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
-      <button class="add-task"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-body">
+             <label class="input-label">Enter List</label>
+             <input type="text" class="form-control" placeholder="enter list.." #taskName>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
+             <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Add Task</button>
+           </div>
+         </div>
+       </div>
+     </div>
+      <div class="add-task">
+        <button class="add-task" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  
     </div>
    </div>
+   </div>
+
    <div class="task-manager-container">
     <div class="add-list-container">
       <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal">Add List <i class="fa fa-plus"></i></button>
@@ -38,8 +58,22 @@
             </div>
           </div>
         </div>
-      </div>
-     
+      </div> 
     </div>
    </div>
+
  </div>
+ <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <label class="input-label">Enter List</label>
+        <input type="text" class="form-control" placeholder="enter list.." #taskName>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
+        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="addTask(taskName.value)">Add Task</button>
+      </div>
+    </div>
+  </div>
+</div>

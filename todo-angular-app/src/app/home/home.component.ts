@@ -8,12 +8,13 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class HomeComponent implements OnInit {
   lists:any[];
-
+  listId:string;
+  
   constructor(private todoService:TodoService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
-      console.log(params);
+      // console.log(params);
     })
      this.getLists();
   }
@@ -27,12 +28,22 @@ export class HomeComponent implements OnInit {
   getLists(){
     this.todoService.getLists().subscribe((lists:any[])=>{
       this.lists = lists
-      console.log(this.lists);
-      this.todoService.getTask(this.lists[0]._id).subscribe((tasks:any[])=>{
-        console.log(tasks);
-       })
+      // console.log(this.lists);
+      // this.todoService.getTask(this.lists[0]._id).subscribe((tasks:any[])=>{
+      //   console.log(tasks);
+      //  })
     })
   }
  
+  addTask(title:string){
+      console.log(title)
+    this.route.params.subscribe((params:Params)=>{
+      this.listId= params['listId'];
+      console.log(this.listId)
+    })
+    this.todoService.createTask(title,this.listId).subscribe(()=>{
+
+    })
+  }
   
 }
