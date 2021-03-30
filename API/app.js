@@ -34,6 +34,12 @@ app.get('/lists',(req,res)=>{
     });
  });
 
+ app.get('/list/:listId',(req,res)=>{
+     List.findOne({_listId:req.params.listId}).then((list)=>{
+         res.send(list);
+     })
+ })
+
  app.post('/lists',(req,res)=>{
     // create new list and return new list to the user
     let title = req.body.title;

@@ -1,7 +1,10 @@
 <div class="content">
 
+ 
 
    <div class="task-manager-container" *ngFor="let list of lists; let i=index;"> 
+    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  [cdkDragData]="list" (cdkDropListDropped)="drop($event)">
+      <div class="task-manager-container" cdkDrag>  
     <div class="topbar"  [routerLink]="['/lists',list._id]">
       {{list.title}}
     </div>
@@ -14,15 +17,17 @@
     <div class="task-manager-footer"  [routerLink]="['/lists',list._id]">
       <div class="list-edits">
         <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
-        <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button (click)="edit()" data-bs-toggle="modal" data-bs-target="#editListModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
 
       <div class="add-task">
         <button class="add-task" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-  
     </div>
+  </div>
+  
+  </div>
    </div>
-   </div>
+  </div>
 
    <div class="task-manager-container">
     <div class="add-list-container">
@@ -49,8 +54,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <label class="input-label">Enter List</label>
-        <input type="text" class="form-control" placeholder="enter list.." #taskName>
+        <label class="input-label">Enter Task</label>
+        <input type="text" class="form-control" placeholder="enter Task.." #taskName>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
@@ -63,10 +68,25 @@
   <div class="modal-dialog">
    <div class="modal-content">
      <div class="modal-body">
-       <label class="input-label">Enter List</label>
-       <input type="text" class="form-control" placeholder="enter list.." >
+       <label>Delete List</label>
+       <input type="text" class="form-control" placeholder="" >
      </div>
      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteList()">delete</button>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="modal fade" id="editListModal" tabindex="-1" aria-labelledby="editListModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-body">
+       <label>Edit List</label>
+       <input type="text" class="form-control" placeholder="" >
+     </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteList()">delete</button>
      </div>
    </div>
