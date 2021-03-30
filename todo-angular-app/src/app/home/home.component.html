@@ -1,18 +1,17 @@
 <div class="content">
 
 
-   <div class="task-manager-container" *ngFor="let list of lists; let i=index;" [routerLink]="['/lists',list._id]"> 
-    <div class="topbar">
+   <div class="task-manager-container" *ngFor="let list of lists; let i=index;"> 
+    <div class="topbar"  [routerLink]="['/lists',list._id]">
       {{list.title}}
     </div>
-    <div class="task-list-container" >
-      <div  class="task" *ngFor="let task of tasks" [routerLink]="['/lists',list._id,'tasks',task._id]">
-     <div *ngIf="tasks.length>0">
-     <div *ngIf="list._id === task._listId">{{task.title}}</div></div>
-     <button (click)="deleteTask()"><i class="fa fa-times fa-xs" aria-hidden="true"></i></button>
+    <div class="task-list-container">
+      <div  class="task" *ngFor="let task of list.taskList,let j=index" [routerLink]="['/lists',list._id,'tasks',task._id]">
+      <p>{{task.title}}</p> <!--//<div *ngIf="task.length>0 && list._id === task._listId " -->
+     <button (click)="deleteTask()"><i class="fa fa-times" aria-hidden="true"></i></button>
       </div>
     </div>
-    <div class="task-manager-footer">
+    <div class="task-manager-footer"  [routerLink]="['/lists',list._id]">
       <div class="list-edits">
         <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
         <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

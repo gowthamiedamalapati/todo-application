@@ -8,16 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { ListCardComponent } from './list-card/list-card.component';
-import { TaskItemComponent } from './task-item/task-item.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ListCardComponent,
-    TaskItemComponent
   ],
   imports: [
     BrowserModule,
