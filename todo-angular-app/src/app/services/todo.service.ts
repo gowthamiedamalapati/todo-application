@@ -13,6 +13,12 @@ export class TodoService {
   getLists(){
     return this.webrequest.get('/lists');
   }
+  getList(listId){
+   return this.webrequest.get('/lists/'+listId);
+  }
+  updateList(title:string,listId:string){
+   debugger; return this.webrequest.patch('/lists/'+listId,{title});
+  }
   deleteList(listId){
    return this.webrequest.delete('/lists/'+listId);
   }

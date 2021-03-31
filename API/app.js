@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     // allow preflight
     if (req.method === 'OPTIONS') {
-        res.send(200);
+        res.sendStatus(200);
     } else {
         next();
     }
@@ -34,8 +34,8 @@ app.get('/lists',(req,res)=>{
     });
  });
 
- app.get('/list/:listId',(req,res)=>{
-     List.findOne({_listId:req.params.listId}).then((list)=>{
+ app.get('/lists/:id',(req,res)=>{
+     List.findOne({_id:req.params.id}).then((list)=>{
          res.send(list);
      })
  })
@@ -57,8 +57,8 @@ app.get('/lists',(req,res)=>{
     //update specified list and return updated list to the user
     List.findOneAndUpdate({_id:req.params.id},{
         $set: req.body
-    }).then(()=>{
-        res.sendStatus(200);
+    }).then((listDoc)=>{
+        res.send(listDoc);
     });
  });
 
@@ -100,22 +100,16 @@ app.get('/lists',(req,res)=>{
  });
 
  app.delete('/lists/:listId/tasks/:taskId', (req,res)=>{
+     console.log(req.params.taskId);
+     console.log(req.params.listId);
      Task.findOneAndRemove({
          _id: req.params.taskId,
          _listId: req.params.listId
      }).then((removedTaskDoc)=>{
          res.send(removedTaskDoc);
+         console.log(removedTaskDoc);
      })
  });
-
-//  app.delete('/lists/:listId/tasks/:taskId',(req,res)=>{
-//      Task.findOneAndRemove({
-//          _id:req.params.taskId,
-//          _listId:req.params.listid
-//         }).then((removedTaskDoc)=>{
-//             res.send(removedTaskDoc);
-//         })
-//  });
  
 
 

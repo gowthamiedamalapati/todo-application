@@ -22,7 +22,9 @@ export class WebRequestService {
    }
 
    patch(url:string, payload:Object){
-    return this.http.patch(this.URL+url,payload);
+     console.log(url);
+     console.log(payload)
+   debugger; return this.http.patch(this.URL+url,payload);
    }
 
    delete(url:string){

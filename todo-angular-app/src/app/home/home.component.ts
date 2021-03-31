@@ -14,11 +14,17 @@ export class HomeComponent implements OnInit {
   tasks=[];
   taskId:string
   taskList:[]
-  
+
+
   constructor(private todoService:TodoService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-     this.getLists();
+    
+     this.route.params.subscribe((params:Params)=>{
+      this.listId=params['listId']
+      this.taskId= params['taskId'];
+      this.getLists();
+     });
   }
 
   createNewList(title:string){
@@ -38,40 +44,53 @@ export class HomeComponent implements OnInit {
     })
   }
    
-  edit(){
-    this.route.params.subscribe((params:Params)=>{
-      this.listId = params['listId'];
-      console.log(this.listId);
+  // edit(){
+  //   this.route.params.subscribe((params:Params)=>{
+  //     this.listId = params['listId'];
+  //     console.log(this.listId);
+  //     this.todoService.getList(this.listId).subscribe((list)=>{
+  //      console.log(list);
+  //     })
+  //   })
+  // }
+
+    updateList(title:string){
+    // this.route.params.subscribe((params:Params)=>{
+    //   this.listId= params['listId'];
+    // })
+    this.todoService.updateList(title,this.listId).subscribe(()=>{
+     this.getLists();
+    
     })
   }
+
   deleteList(){
-    this.route.params.subscribe((params:Params)=>{
-      this.listId= params['listId'];
-    })
+    // this.route.params.subscribe((params:Params)=>{
+    //   this.listId= params['listId'];
+    // })
     this.todoService.deleteList(this.listId).subscribe((response)=>{
         this.getLists();
     });
   }
  
   addTask(title:string){
-    this.route.params.subscribe((params:Params)=>{
-      this.listId= params['listId'];
-    })
+    // this.route.params.subscribe((params:Params)=>{
+    //   this.listId= params['listId'];
+    // })
     this.todoService.createTask(title,this.listId).subscribe((response)=>{
         console.log(response);
         this.getLists();
     })
   }
 
-  deleteTask(){
-    this.route.params.subscribe((params:Params)=>{
-      this.listId=params['listId']
-      this.taskId= params['taskId'];
-      console.log(params);
-    })
-    this.todoService.deleteTask(this.listId,this.taskId).subscribe(()=>{
-
-    })
+  deleteTask(taskId){
+ 
+      if(this.listId && taskId){
+      this.todoService.deleteTask(this.listId,taskId).subscribe(()=>{
+        this.getLists();
+      })
+    }
+    
   }
 
   drop(event: CdkDragDrop<string[]>) {
