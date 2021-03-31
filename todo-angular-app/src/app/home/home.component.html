@@ -1,17 +1,15 @@
 <div class="content">
 
- 
-
-   <div class="task-manager-container" *ngFor="let list of lists; let i=index;"> 
-    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  [cdkDragData]="list" (cdkDropListDropped)="drop($event)">
-      <div class="task-manager-container" cdkDrag>  
+    
+    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  (cdkDropListDropped)="drop($event)">
+      <div class="task-manager-container" *ngFor="let list of lists; let i=index;" cdkDrag>  
     <div class="topbar"  [routerLink]="['/lists',list._id]">
       {{list.title}}
     </div>
     <div class="task-list-container">
       <div  class="task" *ngFor="let task of list.taskList,let j=index" [routerLink]="['/lists',list._id,'tasks',task._id]">
         <div class="task-container">
-      <p>{{task.title}}</p> <!--//<div *ngIf="task.length>0 && list._id === task._listId " -->
+      <p>{{task.title}}</p>
      <button (click)="deleteTask(task._id)"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
       </div>
@@ -23,18 +21,28 @@
         <button  data-bs-toggle="modal" data-bs-target="#editListModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
       <div class="add-task">
-        <a  data-bs-toggle="modal"  data-bs-target="#addTaskModal"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#addTaskModal" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
+    <!-- <div id="hide">
+      <div class="textarea">
+      <label class="input-label">Enter Task</label>
+      <input type="text" class="form-control" placeholder="enter Task.." #taskName>
+    </div>
+      <span></span>
+      <div class="button-footer">
+      <button type="button"  >dismiss</button>
+        <button type="button" (click)="addTask(taskName.value)">Add Task</button>
+      </div>
+    </div> -->
   </div>
   
-  </div>
    </div>
   </div>
 
    <div class="task-manager-container">
     <div class="add-list-container">
       <button class="btn add" data-bs-toggle="modal" data-bs-target="#addListModal">Add List <i class="fa fa-plus"></i></button>
-      <div class="modal fade" id="addListModal" tabindex="-1" aria-labelledby="addListModalLabel" aria-hidden="true">
+      <div class="modal fade " id="addListModal" tabindex="-1" aria-labelledby="addListModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body">
@@ -52,7 +60,7 @@
    </div>
 
  </div>
- <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+ <div class="modal fade show" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">

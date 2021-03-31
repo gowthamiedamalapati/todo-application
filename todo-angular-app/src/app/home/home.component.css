@@ -153,3 +153,36 @@ background-color: white;
     display: flex;
     flex-direction: row;
 }
+
+
+
+
+#hide{
+    display:none;
+    position: absolute;
+    bottom: 0px;
+    margin: 5px;
+    height:120px;
+    background-color: white;
+    width: 230px;
+}
+#hide button{
+    background-color: aquamarine;
+    
+}
+#hide .button-footer{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+#hide .textarea{
+    padding: 10px;
+}
+#hide span{
+    border-bottom: 0.5px solid lightgrey;
+    display: block;
+    margin: 0px 10px;
+}
+.display{
+    display: block;
+}

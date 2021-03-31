@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   tasks=[];
   taskId:string
   taskList:[]
+  
 
 
   constructor(private todoService:TodoService, private route:ActivatedRoute) { }
@@ -92,7 +93,11 @@ export class HomeComponent implements OnInit {
     }
     
   }
-
+  open(){
+    let element = document.getElementById('hide');
+    element.classList.add("display");
+  }
+  
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.lists, event.previousIndex, event.currentIndex);
   }
