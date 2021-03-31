@@ -45,39 +45,21 @@ export class HomeComponent implements OnInit {
     })
   }
    
-  // edit(){
-  //   this.route.params.subscribe((params:Params)=>{
-  //     this.listId = params['listId'];
-  //     console.log(this.listId);
-  //     this.todoService.getList(this.listId).subscribe((list)=>{
-  //      console.log(list);
-  //     })
-  //   })
-  // }
 
     updateList(title:string){
-    // this.route.params.subscribe((params:Params)=>{
-    //   this.listId= params['listId'];
-    // })
     this.todoService.updateList(title,this.listId).subscribe(()=>{
      this.getLists();
-    
+     this.listName=" ";
     })
   }
 
   deleteList(){
-    // this.route.params.subscribe((params:Params)=>{
-    //   this.listId= params['listId'];
-    // })
     this.todoService.deleteList(this.listId).subscribe((response)=>{
         this.getLists();
     });
   }
  
   addTask(title:string){
-    // this.route.params.subscribe((params:Params)=>{
-    //   this.listId= params['listId'];
-    // })
     this.todoService.createTask(title,this.listId).subscribe((response)=>{
         console.log(response);
         this.getLists();
@@ -93,10 +75,7 @@ export class HomeComponent implements OnInit {
     }
     
   }
-  open(){
-    let element = document.getElementById('hide');
-    element.classList.add("display");
-  }
+
   
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.lists, event.previousIndex, event.currentIndex);

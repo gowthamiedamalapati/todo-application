@@ -16,6 +16,7 @@
       
     </div>
     <div class="task-manager-footer"  [routerLink]="['/lists',list._id]">
+      <!-- <div class="task-manager-footer"> -->
       <div class="list-edits">
         <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
         <button  data-bs-toggle="modal" data-bs-target="#editListModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -47,11 +48,12 @@
           <div class="modal-content">
             <div class="modal-body">
               <label class="input-label">Enter List</label>
-              <input type="text" class="form-control" placeholder="enter list.." #listName>
+              <input type="text" class="form-control" placeholder="enter list.." [(ngModel)]="listName">
+              {{listName}}
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-              <button type="button" class="btn btn-primary" (click)="createNewList(listName.value)" data-bs-dismiss="modal">Add List</button>
+              <button type="button" class="btn btn-primary" (click)="createNewList(listName)" data-bs-dismiss="modal">Add List</button>
             </div>
           </div>
         </div>
