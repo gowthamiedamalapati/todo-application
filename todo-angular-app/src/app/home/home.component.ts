@@ -44,11 +44,11 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-  open(){
-    document.getElementById('hide').style.display='block';
+  open(listId){
+    document.getElementById('hide'+listId).style.display='block';
   }
-  close(){
-    document.getElementById('hide').style.display='none';
+  close(listId){
+    document.getElementById('hide'+listId).style.display='none';
   }
 
     updateList(title:string){
@@ -64,17 +64,17 @@ export class HomeComponent implements OnInit {
     });
   }
  
-  addTask(title:string){
-    this.todoService.createTask(title,this.listId).subscribe((response)=>{
+  addTask(title:string,listId:string){
+    this.todoService.createTask(title,listId).subscribe((response)=>{
         console.log(response);
         this.getLists();
     })
   }
 
-  deleteTask(taskId){
+  deleteTask(listId,taskId){
  
-      if(this.listId && taskId){
-      this.todoService.deleteTask(this.listId,taskId).subscribe(()=>{
+      if(listId && taskId){
+      this.todoService.deleteTask(listId,taskId).subscribe(()=>{
         this.getLists();
       })
     }

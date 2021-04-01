@@ -167,7 +167,7 @@ background-color: white;
 
 
 
-#hide{
+.hide-class{
     display:none;
     position: absolute;
     bottom: 0px;
@@ -176,19 +176,19 @@ background-color: white;
     background-color: white;
     width: 230px;
 }
-#hide button{
+.hide-class button{
     background-color: aquamarine;
     
 }
-#hide .button-footer{
+.hide-class .button-footer{
     padding: 10px;
     display: flex;
     justify-content: space-between;
 }
-#hide .textarea{
+.hide-class .textarea{
     padding: 10px;
 }
-#hide span{
+.hide-class span{
     border-bottom: 0.5px solid lightgrey;
     display: block;
     margin: 0px 10px;
