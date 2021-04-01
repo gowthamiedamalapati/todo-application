@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   tasks=[];
   taskId:string
   taskList:[]
-  
+  updateListId:string;
+  updateTaskId:string;
 
 
   constructor(private todoService:TodoService, private route:ActivatedRoute) { }
@@ -44,22 +45,17 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-  open(listId){
-    document.getElementById('hide'+listId).style.display='block';
-  }
-  close(listId){
-    document.getElementById('hide'+listId).style.display='none';
-  }
+ 
 
-    updateList(title:string){
-    this.todoService.updateList(title,this.listId).subscribe(()=>{
+    updateList(title:string,listId){
+    this.todoService.updateList(title,listId).subscribe(()=>{
      this.getLists();
      this.listName=" ";
     })
   }
 
-  deleteList(){
-    this.todoService.deleteList(this.listId).subscribe((response)=>{
+  deleteList(listId){
+    this.todoService.deleteList(listId).subscribe((response)=>{
         this.getLists();
     });
   }
@@ -68,6 +64,19 @@ export class HomeComponent implements OnInit {
     this.todoService.createTask(title,listId).subscribe((response)=>{
         console.log(response);
         this.getLists();
+    })
+  }
+  sendId(listId,taskId){
+    console.log(listId);
+   console.log(taskId);
+   this.updateListId=listId;
+   this.updateTaskId=taskId;
+   
+  }
+
+  updateTask(title:string){
+    this.todoService.updateTask(title,this.updateListId,this.updateTaskId).subscribe((response)=>{
+     this.getLists();
     })
   }
 
@@ -80,7 +89,25 @@ export class HomeComponent implements OnInit {
     }
     
   }
-
+  
+  open(listId){
+    document.getElementById('hide'+listId).style.display='block';
+  }
+  close(listId){
+    document.getElementById('hide'+listId).style.display='none';
+  }
+  openDelete(listId){
+    document.getElementById('delete'+listId).style.display='block'
+  }
+  closeDelete(listId){
+    document.getElementById('delete'+listId).style.display='none';
+  }
+  openEdit(listId){
+    document.getElementById('edit'+listId).style.display='block'
+  }
+  closeEdit(listId){
+    document.getElementById('edit'+listId).style.display='none';
+  }
   
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.lists, event.previousIndex, event.currentIndex);

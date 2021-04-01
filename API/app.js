@@ -94,8 +94,8 @@ app.get('/lists',(req,res)=>{
      },{
          $set: req.body
        }
-     ).then(()=>{
-         res.sendStatus(200);
+     ).then((taskDoc)=>{
+         res.send(taskDoc);
      })
  });
 

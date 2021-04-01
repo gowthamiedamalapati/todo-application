@@ -1,8 +1,8 @@
 <div class="content">
 
     
-    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  (cdkDropListDropped)="drop($event)">
-      <div class="task-manager-container" *ngFor="let list of lists; let i=index;" cdkDrag>  
+    <!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  (cdkDropListDropped)="drop($event)"> -->
+      <div class="task-manager-container" *ngFor="let list of lists; let i=index;">  
     <div class="topbar" >
       {{list.title}}
     </div>
@@ -13,16 +13,16 @@
      <button (click)="deleteTask(list._id,task._id)"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
     <span></span>
-    <div class="task-edit">
+    <div class="editbuttons">
       <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      <button (click)="sendId(list._id,task._id)" data-bs-toggle="modal" data-bs-target="#editTaskModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
     </div>
       </div>
     </div>
     <div class="task-manager-footer">
       <div class="list-edits">
-        <button  data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
-        <button  data-bs-toggle="modal" data-bs-target="#editListModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button  (click)="openDelete(list._id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button  (click)="openEdit(list._id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
       <div class="add-task">
       <button (click)="open(list._id)" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
@@ -38,10 +38,32 @@
         <button type="button" (click)="addTask(taskName.value,list._id)">Add Task</button>
       </div>
     </div>
+    <div class="hide-delete-class" id="delete{{list._id}}">
+      <div class="deletetextarea">
+      <label class="input-label">delete<i class="text-color">{{list.title}}</i> </label>
+      <input type="text" >
+    </div>
+      <span></span>
+      <div class="delete-button-footer">
+      <button type="button" (click)="closeEdit(list._id)"   >dismiss</button>
+        <button type="button" (click)="deleteList(list._id)">delete</button>
+      </div>
+    </div>
+    <div class="hide-edit-class" id="edit{{list._id}}">
+      <div class="edittextarea">
+      <label class="input-label">Edit List</label>
+      <input type="text"  #updatedValue>
+    </div>
+      <span></span>
+      <div class="edit-button-footer">
+      <button type="button" (click)="closeEdit(list._id)" >dismiss</button>
+        <button type="button" (click)="updateList(updatedValue.value,list._id)">update</button>
+      </div>
+    </div>
   </div>
   
    </div>
-  </div>
+ 
 
    <div class="task-manager-container">
     <div class="add-list-container">
@@ -51,59 +73,31 @@
           <div class="modal-content">
             <div class="modal-body">
               <label class="input-label">Enter List</label>
-              <input type="text" class="form-control" placeholder="enter list.." [(ngModel)]="listName">
-              {{listName}}
+              <input type="text" class="form-control" placeholder="enter list.." #listName>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-              <button type="button" class="btn btn-primary" (click)="createNewList(listName)" data-bs-dismiss="modal">Add List</button>
+              <button type="button" class="btn btn-primary" (click)="createNewList(listName.value)" data-bs-dismiss="modal">Add List</button>
             </div>
           </div>
         </div>
       </div> 
     </div>
    </div>
-
- </div>
- <!-- <div class="modal fade show" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <label class="input-label">Enter Task</label>
-        <input type="text" class="form-control" placeholder="enter Task.." #taskName>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="addTask(taskName.value)">Add Task</button>
+    
+   <div class="modal fade " id="editTaskModal" tabindex="-1" aria-labelledby="editTasKModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <label class="input-label">Edit Task</label>
+          <input type="text" class="form-control" placeholder="enter Task.." #updatedTaskName>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
+          <button type="button" class="btn btn-primary" (click)="updateTask(updatedTaskName.value)" data-bs-dismiss="modal">Update</button>
+        </div>
       </div>
     </div>
-  </div>
-</div> -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-   <div class="modal-content">
-     <div class="modal-body">
-       <label>Delete List</label>
-       <!-- <input type="text" class="form-control" placeholder="" > -->
-     </div>
-     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteList()">delete</button>
-     </div>
-   </div>
+  </div>  
+
  </div>
-</div>
-<div class="modal fade" id="editListModal" tabindex="-1" aria-labelledby="editListModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-   <div class="modal-content">
-     <div class="modal-body">
-       <label>Edit List</label>
-       <input type="text" class="form-control" placeholder="" #updatedValue >
-     </div>
-     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">dismiss</button>
-       <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateList(updatedValue.value)">Update</button>
-     </div>
-   </div>
- </div>
-</div>

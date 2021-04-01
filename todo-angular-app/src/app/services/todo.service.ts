@@ -26,7 +26,10 @@ export class TodoService {
     return this.webrequest.get('/lists/'+listId+'/tasks');
   }
   createTask(title:string,listId:string){
-    return this.webrequest.post('/lists/'+listId+'/tasks',{title,listId})
+    return this.webrequest.post('/lists/'+listId+'/tasks',{title})
+  }
+  updateTask(title:string,listId:string,taskId:string){
+    return this.webrequest.patch('/lists/'+listId+'/tasks/'+taskId,{title})
   }
   deleteTask(listId,taskId){
     return this.webrequest.delete('/lists/'+listId+'/tasks/'+taskId);

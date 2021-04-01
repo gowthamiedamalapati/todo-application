@@ -24,7 +24,7 @@ export class WebRequestService {
    patch(url:string, payload:Object){
      console.log(url);
      console.log(payload)
-   debugger; return this.http.patch(this.URL+url,payload);
+    return this.http.patch(this.URL+url,payload);
    }
 
    delete(url:string){

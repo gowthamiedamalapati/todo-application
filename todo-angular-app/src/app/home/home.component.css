@@ -122,6 +122,11 @@ p{
     justify-content: space-between;
     padding-bottom: 5px;
 }
+.editbuttons{
+    padding-top:5px ;
+ display: flex;
+ justify-content: space-between;
+}
 .task button{
  border:none;
 background-color: white;
@@ -177,7 +182,7 @@ background-color: white;
     width: 230px;
 }
 .hide-class button{
-    background-color: aquamarine;
+    background-color: rgb(246 220 194);
     
 }
 .hide-class .button-footer{
@@ -195,4 +200,70 @@ background-color: white;
 }
 .display{
     display: block;
+}
+
+.hide-delete-class{
+    display:none;
+    position: absolute;
+    bottom: 0px;
+    margin: 5px;
+    height:120px;
+    background-color: white;
+    width: 230px;
+}
+.hide-delete-class button{
+    background-color: rgb(246 220 194);
+    
+}
+.hide-delete-class .delete-button-footer{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.hide-delete-class .deletetextarea{
+    padding: 10px;
+}
+.hide-delete-class span{
+    border-bottom: 0.5px solid lightgrey;
+    display: block;
+    margin: 0px 10px;
+}
+.display{
+    display: block;
+}
+.text-color{
+    color:red
+}
+
+.hide-edit-class{
+    display:none;
+    position: absolute;
+    bottom: 0px;
+    margin: 5px;
+    height:120px;
+    background-color: white;
+    width: 230px;
+}
+.hide-edit-class button{
+    background-color: rgb(246 220 194);
+    
+}
+.hide-edit-class .edit-button-footer{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.hide-edit-class .editextarea{
+    padding: 10px;
+}
+.hide-edit-class span{
+    border-bottom: 0.5px solid lightgrey;
+    display: block;
+    margin: 0px 10px;
+}
+.display{
+    display: block;
+}
+.text-color{
+    color:red
 }
