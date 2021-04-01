@@ -12,6 +12,11 @@
       <p>{{task.title}}</p>
      <button (click)="deleteTask(task._id)"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
+    <span></span>
+    <div class="task-edit">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    </div>
       </div>
       
     </div>
@@ -22,19 +27,19 @@
         <button  data-bs-toggle="modal" data-bs-target="#editListModal" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </div>
       <div class="add-task">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#addTaskModal" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+      <button (click)="open()" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
     </div>
-    <!-- <div id="hide">
+    <div id="hide">
       <div class="textarea">
       <label class="input-label">Enter Task</label>
       <input type="text" class="form-control" placeholder="enter Task.." #taskName>
     </div>
       <span></span>
       <div class="button-footer">
-      <button type="button"  >dismiss</button>
+      <button type="button" (click)="close()"   >dismiss</button>
         <button type="button" (click)="addTask(taskName.value)">Add Task</button>
       </div>
-    </div> -->
+    </div>
   </div>
   
    </div>

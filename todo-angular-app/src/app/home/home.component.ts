@@ -44,7 +44,12 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-   
+  open(){
+    document.getElementById('hide').style.display='block';
+  }
+  close(){
+    document.getElementById('hide').style.display='none';
+  }
 
     updateList(title:string){
     this.todoService.updateList(title,this.listId).subscribe(()=>{
