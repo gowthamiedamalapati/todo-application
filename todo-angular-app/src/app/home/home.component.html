@@ -1,8 +1,8 @@
 <div class="content">
 
     
-    <!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  (cdkDropListDropped)="drop($event)"> -->
-      <div class="task-manager-container" *ngFor="let list of lists; let i=index;">  
+    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list"  (cdkDropListDropped)="drop($event)">
+      <div class="task-manager-container" *ngFor="let list of lists; let i=index;" cdkDrag>  
     <div class="topbar" >
       {{list.title}}
     </div>
@@ -41,11 +41,10 @@
     <div class="hide-delete-class" id="delete{{list._id}}">
       <div class="deletetextarea">
       <label class="input-label">delete<i class="text-color">{{list.title}}</i> </label>
-      <input type="text" >
     </div>
       <span></span>
       <div class="delete-button-footer">
-      <button type="button" (click)="closeEdit(list._id)"   >dismiss</button>
+      <button type="button" (click)="closeDelete(list._id)"  >dismiss</button>
         <button type="button" (click)="deleteList(list._id)">delete</button>
       </div>
     </div>
